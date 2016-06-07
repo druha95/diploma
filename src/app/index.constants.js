@@ -1,10 +1,9 @@
-/* global malarkey:false, moment:false */
+/* moment:false */
 (function() {
   'use strict';
 
   angular
     .module('diploma')
-    .constant('malarkey', malarkey)
     .constant('moment', moment);
 
 })();
