@@ -1,5 +1,38 @@
+<div>
+  <acme-navbar creation-date="main.creationDate"></acme-navbar>
+</div>
+
 <div class="container">
-
-
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12" nv-file-drop uploader="uploader">
+      <div class="list">
+        <input type="file" nv-file-select uploader="uploader" multiple/><br/>
+        <ul>
+          <li ng-repeat="item in uploader.queue">
+            <span ng-bind="item.file.name"></span>
+            <span class="{{getFileStatus(item)}}">{{getFileStatus(item)}}</span>
+            <button class="btn btn-success btn-xs" ng-click="item.upload()">upload</button>
+            <button class="btn btn-warning btn-xs" ng-click="item.cancel()">upload</button>
+            <button class="btn btn-danger btn-xs" ng-click="item.remove()">upload</button>
+          </li>
+        </ul>
+      </div>
+      <div class="progress_block">
+        Queue progress:
+        <div class="progress" style="">
+          <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
+        </div>
+      </div>
+      <div class="button_block">
+        <button class="btn btn-success" ng-click="executeAction('uploadAll')">Upload all</button>
+        <button class="btn btn-warning" ng-click="executeAction('cancelAll')">Cancel all</button>
+        <button class="btn btn-danger" ng-click="executeAction('removeAll')">Remove all</button>
+      </div>
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-12">
+      <div class="col-md-12 col-sm-12 col-xs-12"></div>
+      <div class="col-md-12 col-sm-12 col-xs-12"></div>
+    </div>
+  </div>
 
 </div>
