@@ -14,7 +14,8 @@
       'ui.bootstrap',
       'toastr',
       'angularFileUpload',
-      'ui.select'
+      'ui.select',
+      'datatables'
     ]);
 
 })();

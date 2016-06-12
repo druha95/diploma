@@ -4,13 +4,13 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-12" nv-file-drop uploader="uploader">
+    <div class="col-md-4 col-sm-4 col-xs-12" nv-file-drop uploader="main.uploader">
       <div class="list">
-        <input type="file" nv-file-select uploader="uploader" multiple/><br/>
+        <input type="file" nv-file-select uploader="main.uploader" multiple/><br/>
         <ul>
-          <li ng-repeat="item in uploader.queue">
+          <li ng-repeat="item in main.uploader.queue">
             <span ng-bind="item.file.name"></span>
-            <span class="{{getFileStatus(item)}}">{{getFileStatus(item)}}</span>
+            <span class="{{main.getFileStatus(item)}}">{{main.getFileStatus(item)}}</span>
             <button class="btn btn-success btn-xs" ng-click="item.upload()">upload</button>
             <button class="btn btn-warning btn-xs" ng-click="item.cancel()">cancel</button>
             <button class="btn btn-danger btn-xs" ng-click="item.remove()">remove</button>
@@ -20,23 +20,28 @@
       <div class="progress_block">
         Queue progress:
         <div class="progress" style="">
-          <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
+          <div class="progress-bar" role="progressbar" ng-style="{ 'width': main.uploader.progress + '%' }" style="width: 0%;"></div>
         </div>
       </div>
       <div class="button_block">
-        <button class="btn btn-success" ng-click="executeAction('uploadAll')">Upload all</button>
-        <button class="btn btn-warning" ng-click="executeAction('cancelAll')">Cancel all</button>
-        <button class="btn btn-danger" ng-click="executeAction('removeAll')">Remove all</button>
+        <button class="btn btn-success" ng-click="main.executeAction('uploadAll')">Upload all</button>
+        <button class="btn btn-warning" ng-click="main.executeAction('cancelAll')">Cancel all</button>
+        <button class="btn btn-danger" ng-click="main.executeAction('removeAll')">Remove all</button>
       </div>
     </div>
     <div class="col-md-8 col-sm-8 col-xs-12">
       <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <input class="form-control" type="text" placeholder="Enter keyword"/>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="col-md-6">
-          <ui-select ng-model="selected.value" multiple>
+          <ui-select ng-model="main.selected.value" multiple placeholder="Tags">
             <ui-select-match>
               {{$item.name}}
             </ui-select-match>
-            <ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id" >
+            <ui-select-choices repeat="item in (main.itemArray | filter: $select.search) track by item.id" >
               <span ng-bind="item.name" ng-show="item.isVisible"></span>
             </ui-select-choices>
           </ui-select>
@@ -45,14 +50,6 @@
           <input type="checkbox" id="isAnd"/>
           <label for="isAnd">Enable And Operator(default Or)</label>
         </div>
-      </div>
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <ul>
-          <li ng-repeat="item in selectedList">
-            <span>{{item.name}}</span>
-            <span ng-click="removeFromList()">remove</span>
-          </li>
-        </ul>
       </div>
     </div>
   </div>

@@ -6,14 +6,17 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, FileUploader, $scope) {
-    $scope.uploader = new FileUploader({
+  function MainController($timeout, FileUploader) {
+
+    var vm = this;
+
+    vm.uploader = new FileUploader({
       formData: [{
         "key": "lalalal"
       }]
     });
 
-    $scope.itemArray = [
+    vm.itemArray = [
       {id: 1, name: 'first', isVisible: true},
       {id: 2, name: 'second', isVisible: true},
       {id: 3, name: 'third', isVisible: true},
@@ -21,24 +24,24 @@
       {id: 5, name: 'fifth', isVisible: true}
     ];
 
-    $scope.selected = { value: $scope.itemArray[0] };
+    vm.selected = { value: vm.itemArray[0] };
 
-    $scope.selectedList = [];
+    vm.selectedList = [];
 
 
-    $scope.executedActions = {
+    vm.executedActions = {
       'uploadAll': function() {
-        $scope.uploader.uploadAll()
+        vm.uploader.uploadAll()
       },
       'removeAll': function() {
-        $scope.uploader.clearQueue()
+        vm.uploader.clearQueue()
       },
       'cancelAll': function() {
-        $scope.uploader.cancelAll()
+        vm.uploader.cancelAll()
       }
     };
 
-    $scope.getFileStatus = function(item) {
+    vm.getFileStatus = function(item) {
       if(item.isReady) {
         return "ready"
       }
@@ -64,30 +67,30 @@
       }
     }
 
-    $scope.changedSelect = function(item) {
-      $scope.selectedList.push(item);
-      $scope.findElementById(item.id)
+    vm.changedSelect = function(item) {
+      vm.selectedList.push(item);
+      vm.findElementById(item.id)
     }
 
-    $scope.findElementById = function(id, isShow) {
-      for(var i=0; i<$scope.itemArray.length; i++) {
-        if($scope.itemArray[i].id == id) {
+    vm.findElementById = function(id, isShow) {
+      for(var i=0; i<vm.itemArray.length; i++) {
+        if(vm.itemArray[i].id == id) {
           if(isShow) {
-            $scope.itemArray[i].isVisible = true;
+            vm.itemArray[i].isVisible = true;
           } else {
-            $scope.itemArray[i].isVissible = false;
+            vm.itemArray[i].isVissible = false;
           }
 
         }
       }
     }
 
-    $scope.executeAction = function(type) {
-      $scope.executedActions[type]();
+    vm.executeAction = function(type) {
+      vm.executedActions[type]();
     }
 
-    $scope.removeFromList = function(item) {
-      $scope.findElementById(item.id, true)
+    vm.removeFromList = function(item) {
+      vm.findElementById(item.id, true)
     }
 
   }

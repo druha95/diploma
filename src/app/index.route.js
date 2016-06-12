@@ -17,6 +17,11 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
+      .when('/users', {
+        templateUrl: 'app/users/users.html',
+        controller: 'UsersController',
+        controllerAs: 'users'
+      })
       .otherwise({
         redirectTo: '/'
       });
