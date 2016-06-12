@@ -7,13 +7,19 @@
     <div class="col-md-4 col-sm-4 col-xs-12" nv-file-drop uploader="main.uploader">
       <div class="list">
         <input type="file" nv-file-select uploader="main.uploader" multiple/><br/>
-        <ul>
+        <ul class="files_list">
           <li ng-repeat="item in main.uploader.queue">
-            <span ng-bind="item.file.name"></span>
-            <span class="{{main.getFileStatus(item)}}">{{main.getFileStatus(item)}}</span>
-            <button class="btn btn-success btn-xs" ng-click="item.upload()">upload</button>
-            <button class="btn btn-warning btn-xs" ng-click="item.cancel()">cancel</button>
-            <button class="btn btn-danger btn-xs" ng-click="item.remove()">remove</button>
+            <span class="file_name" ng-bind="item.file.name"></span>
+            <button class="btn btn-danger btn-xs" ng-click="item.remove()">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <button class="btn btn-warning btn-xs" ng-click="item.cancel()">
+              <span class="glyphicon glyphicon-remove-sign"></span>
+            </button>
+            <button class="btn btn-success btn-xs" ng-click="item.upload()">
+              <span class="glyphicon glyphicon-upload"></span>
+            </button>
+            <span class="status_icon glyphicon glyphicon-{{main.getFileStatus(item)}}"></span>
           </li>
         </ul>
       </div>
@@ -24,19 +30,19 @@
         </div>
       </div>
       <div class="button_block">
-        <button class="btn btn-success" ng-click="main.executeAction('uploadAll')">Upload all</button>
-        <button class="btn btn-warning" ng-click="main.executeAction('cancelAll')">Cancel all</button>
-        <button class="btn btn-danger" ng-click="main.executeAction('removeAll')">Remove all</button>
+        <button class="btn btn-success btn-sm" ng-click="main.executeAction('uploadAll')">Upload all</button>
+        <button class="btn btn-warning btn-sm" ng-click="main.executeAction('cancelAll')">Cancel all</button>
+        <button class="btn btn-danger btn-sm" ng-click="main.executeAction('removeAll')">Remove all</button>
       </div>
     </div>
     <div class="col-md-8 col-sm-8 col-xs-12">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12 query_block">
           <input class="form-control" type="text" placeholder="Enter keyword"/>
         </div>
       </div>
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="col-md-6">
+      <div class="col-md-12 col-sm-12 col-xs-12 select_tag">
+        <div class="col-md-6 select_wrapper">
           <ui-select ng-model="main.selected.value" multiple placeholder="Tags">
             <ui-select-match>
               {{$item.name}}
@@ -46,7 +52,7 @@
             </ui-select-choices>
           </ui-select>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 logic_operator">
           <input type="checkbox" id="isAnd"/>
           <label for="isAnd">Enable And Operator(default Or)</label>
         </div>
@@ -62,10 +68,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in main.dataList" ng-click="main.openFolder()">
+            <tr ng-repeat="item in main.dataList" ng-click="item.type=='folder' ? main.openFolder() : ''">
               <td>{{item.name}}</td>
               <td>{{item.size}}</td>
-              <td>
+              <td ng-if="item.type=='file'">
                 <button class="btn btn-success btn-xs">Donwload</button>
                 <button class="btn btn-danger btn-xs">Upload</button>
               </td>

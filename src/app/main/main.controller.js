@@ -55,28 +55,25 @@
     };
 
     vm.getFileStatus = function(item) {
-      if(item.isReady) {
-        return "ready"
-      }
 
       if(item.isUploading){
         return "uploading"
       }
 
       if(item.isUploaded) {
-        return "uploaded"
+        return "ok"
       }
 
       if(item.isSuccess){
-        return "success"
+        return "ok"
       }
 
       if(item.isCancel) {
-        return "cancel"
+        return ""
       }
 
       if(item.isError) {
-        return "error"
+        return "remove"
       }
     }
 

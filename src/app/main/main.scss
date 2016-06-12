@@ -1,0 +1,53 @@
+.files_list {
+  list-style: none;
+  padding-left: 0;
+
+  button {
+    float: right;
+    margin-left: 5px;
+  }
+
+  .file_name {
+    display: inline-block;
+    max-width: 225px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .status_icon {
+
+    float: right;
+    margin-right: 5px;
+
+    &.glyphicon-ok {
+      color: green;
+    }
+
+    &.glyphicon-remove {
+      color: red;
+    }
+
+  }
+
+}
+
+.button_block {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.query_block {
+  margin-bottom: 15px;
+}
+
+.select_tag {
+  margin-bottom: 15px;
+
+  .logic_operator {
+    padding-top: 5px;
+  }
+
+}
+
+

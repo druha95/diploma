@@ -17,6 +17,11 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
+      .when('/signup', {
+        templateUrl: 'app/signUp/signup.html',
+        controller: 'SignupController',
+        controllerAs: 'signup'
+      })
       .when('/users', {
         templateUrl: 'app/users/users.html',
         controller: 'UsersController',
