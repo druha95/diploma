@@ -12,6 +12,16 @@
   function UsersController(DTOptionsBuilder, DTColumnBuilder, $resource) {
     var vm = this;
 
+    vm.itemArray = [
+      {id: 1, name: 'first', isVisible: true},
+      {id: 2, name: 'second', isVisible: true},
+      {id: 3, name: 'third', isVisible: true},
+      {id: 4, name: 'fourth', isVisible: true},
+      {id: 5, name: 'fifth', isVisible: true}
+    ];
+
+    vm.selected = { value: vm.itemArray[0] };
+
     vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
       return $resource('data.json').query().$promise;
     }).withPaginationType('full_numbers');

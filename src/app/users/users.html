@@ -2,11 +2,21 @@
   <acme-navbar creation-date="main.creationDate"></acme-navbar>
 </div>
 
-<div class="row">
-  <div class="col-md-4 col-sm-4 col-xs-12">
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <ui-select ng-model="users.selected.value" multiple placeholder="Tags">
+        <ui-select-match>
+          {{$item.name}}
+        </ui-select-match>
+        <ui-select-choices repeat="item in (users.itemArray | filter: $select.search) track by item.id" >
+          <span ng-bind="item.name"></span>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-12">
+      <table datatable="" dt-options="users.dtOptions" dt-columns="users.dtColumns" class="row-border hover"></table>
+    </div>
   </div>
-  <div class="col-md-8 col-sm-8-col-xs-12">
-    <table datatable="" dt-options="users.dtOptions" dt-columns="users.dtColumns" class="row-border hover"></table>
-  </div>
+</div>
 </div>

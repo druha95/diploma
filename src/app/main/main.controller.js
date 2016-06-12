@@ -24,6 +24,19 @@
       {id: 5, name: 'fifth', isVisible: true}
     ];
 
+    vm.dataList = [
+      {
+        name: "lalal",
+        type: "folder",
+        size: "4 GB"
+      },
+      {
+        name: "blala",
+        type: "file",
+        size: "2KB"
+      }
+    ]
+
     vm.selected = { value: vm.itemArray[0] };
 
     vm.selectedList = [];

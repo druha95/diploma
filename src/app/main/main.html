@@ -51,6 +51,29 @@
           <label for="isAnd">Enable And Operator(default Or)</label>
         </div>
       </div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <table class="table">
+            <thead>
+            <tr>
+              <th class="name">Name</th>
+              <th class="size">Size</th>
+              <th class="actions">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in main.dataList" ng-click="main.openFolder()">
+              <td>{{item.name}}</td>
+              <td>{{item.size}}</td>
+              <td>
+                <button class="btn btn-success btn-xs">Donwload</button>
+                <button class="btn btn-danger btn-xs">Upload</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 
