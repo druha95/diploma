@@ -12,8 +12,8 @@
             <span ng-bind="item.file.name"></span>
             <span class="{{getFileStatus(item)}}">{{getFileStatus(item)}}</span>
             <button class="btn btn-success btn-xs" ng-click="item.upload()">upload</button>
-            <button class="btn btn-warning btn-xs" ng-click="item.cancel()">upload</button>
-            <button class="btn btn-danger btn-xs" ng-click="item.remove()">upload</button>
+            <button class="btn btn-warning btn-xs" ng-click="item.cancel()">cancel</button>
+            <button class="btn btn-danger btn-xs" ng-click="item.remove()">remove</button>
           </li>
         </ul>
       </div>
@@ -30,8 +30,30 @@
       </div>
     </div>
     <div class="col-md-8 col-sm-8 col-xs-12">
-      <div class="col-md-12 col-sm-12 col-xs-12"></div>
-      <div class="col-md-12 col-sm-12 col-xs-12"></div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-6">
+          <ui-select ng-model="selected.value" multiple>
+            <ui-select-match>
+              {{$item.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in (itemArray | filter: $select.search) track by item.id" >
+              <span ng-bind="item.name" ng-show="item.isVisible"></span>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="col-md-6">
+          <input type="checkbox" id="isAnd"/>
+          <label for="isAnd">Enable And Operator(default Or)</label>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <ul>
+          <li ng-repeat="item in selectedList">
+            <span>{{item.name}}</span>
+            <span ng-click="removeFromList()">remove</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 

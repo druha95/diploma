@@ -13,7 +13,8 @@
       'ngRoute',
       'ui.bootstrap',
       'toastr',
-      'angularFileUpload'
+      'angularFileUpload',
+      'ui.select'
     ]);
 
 })();
